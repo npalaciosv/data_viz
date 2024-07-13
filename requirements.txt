@@ -1,0 +1,4 @@
+# Python version required: 3.12.4
+requests==2.32.2
+beautifulsoup4==4.12.3
+pandas==2.2.2
