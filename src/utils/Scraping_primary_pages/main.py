@@ -6,7 +6,7 @@ import time
 
 class main_scraper():
 
-    def __init__(self, url, brand = None ,timeout=10000):
+    def __init__(self, url, brand = None ,timeout=10):
         self.url = url
         self.timeout = timeout
         self.brand = brand
@@ -131,10 +131,9 @@ class main_scraper():
         print(df_final.count())
         return df_final
 
-# Ejemplo de uso en el archivo principal
 if __name__ == "__main__":
     # Crear una instancia de la clase
-    scraper = main_scraper('https://carros.tucarro.com.co/', timeout=10000)
+    scraper = main_scraper('https://carros.tucarro.com.co/', timeout=10)
 
     # Obtener las páginas a scrapear
     paginas = scraper.paginas_a_scrapear(10)  # Cambiar a la cantidad de páginas que deseas scrapear
