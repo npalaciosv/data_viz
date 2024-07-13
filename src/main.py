@@ -15,7 +15,7 @@ df_resultado = scraper.scraping_principal(paginas=paginas)
 print(df_resultado.count())
 
 # Enviarmos los resultados a un archivo Excel que vamos a utilizar posteriormente
-df_resultado.dropna().to_csv('Results_main_pages.xlsx', index=False, encoding='utf-8')
+df_resultado.dropna().to_csv('Results_main_pages.csv', index=False, encoding='utf-8',sep=';')
 
 links = df_resultado['link'].dropna().tolist()
 
@@ -29,5 +29,5 @@ for link in links:
     df_temp = scraper.scraping_individual()
     df = pd.concat([df,df_temp], ignore_index=True)
 
-df.to_csv('Results_secondary_pages.xlsx', index=False, encoding='utf-8')
+df.to_csv('Results_secondary_pages.csv', index=False, encoding='utf-8',sep=';')
 print(df)
