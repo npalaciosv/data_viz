@@ -1,1 +1,1 @@
-from .main_scraper import main_scraper
+from .main import main_scraper

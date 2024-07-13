@@ -1,4 +1,4 @@
-from utils import main_scraper
+from utils.Scraping_primary_pages import main_scraper
 
 # Crear una instancia de la clase
 scraper = main_scraper(url='https://carros.tucarro.com.co/',brand='ford')
