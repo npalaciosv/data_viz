@@ -18,8 +18,7 @@ class individual_scraper():
         try:
             html_text = requests.get(self.pag_secundaria, timeout=self.timeout)
             status_code = html_text.status_code
-            print(f'Pagina {self.pag_secundaria} fue leida')
-            time.sleep(9)
+            time.sleep(3)
             if status_code == 200:
                 conexion_url = html_text.url
                 soup = BeautifulSoup(html_text.text, 'lxml')
@@ -52,6 +51,12 @@ class individual_scraper():
 
                 df['Registro'] = pd.Timestamp.now()
                 df['Origen_individual'] = conexion_url
+                Key = df[df['Caracteristicas']=='productID']['Valores'].values[0]
+                df['Key'] = Key
+                index_to_delete = df[df['Caracteristicas'] == 'productID'].index
+                df = df.drop(index_to_delete)
+                df = df.reset_index(drop=True)
+            return df
 
         except requests.exceptions.RequestException as e:
             print(f"Error al hacer la solicitud HTTP: {e}")
