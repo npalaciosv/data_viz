@@ -7,7 +7,7 @@ import pandas as pd
 scraper = main_scraper(url='https://carros.tucarro.com.co/',brand='ford')
 
 # Definimos cuantas paginas principales vamos a scrapear
-paginas = scraper.paginas_a_scrapear(page_num=40)  # Cambiar a la cantidad de páginas que deseas scrapear
+paginas = scraper.paginas_a_scrapear(page_num=5)  # Cambiar a la cantidad de páginas que deseas scrapear
 
 # Ejecutamos la funcion que extrae los datos y la almacenamos en un dataframe - la funcion, por defecto, devuelve un dataframe
 df_resultado = scraper.scraping_principal(paginas=paginas)
