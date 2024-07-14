@@ -131,7 +131,7 @@ class main_scraper():
                         pattern = r'MCO-\d+'
                         match = re.search(pattern, url)
                         if match:
-                            return match.group()
+                            return match.group().replace('-', '')
                         else:
                             return None
 
