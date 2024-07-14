@@ -4,15 +4,18 @@ import pandas as pd
 import re
 import time
 
+# Creamos un paquetr que nos ayude a ejecutar las funciones de scraping definidas en los notebooks
 class main_scraper():
 
     def __init__(self, url, brand = None ,timeout=10):
-        self.url = url
-        self.timeout = timeout
-        self.brand = brand
-
+        self.url = url # Por defecto va a ser la url de tucarro.com
+        self.timeout = timeout # Da un tiempo de espera a que la pagina cargue
+        self.brand = brand # Puede ser una marca especifica, por defecto va a der None
+    
+    # Esta funcion va a ser la encargada de dar nombre a las paginas que vamos a scrapear a partir de la url principal
     def paginas_a_scrapear(self, page_num):
         paginas = {}
+        # Cuando se especifique la marca se agrega esta a la url de busqueda
         if self.brand == None:
             for i in range(1,page_num+1):
                 if i == 1:
@@ -35,14 +38,15 @@ class main_scraper():
                 html_text = requests.get(pagina, timeout=self.timeout)
                 status_code = html_text.status_code
                 print(f'Pagina {pagina} fue leida')
-                time.sleep(9)
+                time.sleep(9) # Damos un spacio entre paginas para que la informacion pueda ser extraida completamente
                 if status_code == 200:
                     conexion_url = html_text.url
                     soup = BeautifulSoup(html_text.text, 'lxml')
                     cars_grill = soup.find('ol', class_ = 'ui-search-layout ui-search-layout--grid')
                     cars = cars_grill.find_all('li', class_ = 'ui-search-layout__item')
                     df = pd.DataFrame()
-
+                    
+                    # Definimos las listas intermedias donde se va a guardar la informacion previo a almacenarla en el respectivo dataframe
                     car_name_list = []
                     price_car_list = []
                     model_car_list = []
